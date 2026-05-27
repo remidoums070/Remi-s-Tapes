@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remi's Tapes - Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="bgMusic" loop preload="none">
+        <source src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQIAAAAAAA==" type="audio/wav">
+    </audio>
+
+    <div class="camcorder" id="clock" aria-label="Digital clock">
+        <span class="clock-indicator">PLAY ▶</span>
+        <span class="clock-time"></span>
+        <span class="clock-date"></span>
+    </div>
+
+    <section class="hero" id="heroSection">
+        <svg class="portrait" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-label="Remi's portrait">
+            <defs>
+                <linearGradient id="portraitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:0.2" />
+                    <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.2" />
+                </linearGradient>
+            </defs>
+            <circle cx="150" cy="150" r="140" fill="url(#portraitGrad)" stroke="#ff00ff" stroke-width="3"/>
+            <circle cx="120" cy="120" r="25" fill="#00ffff"/>
+            <circle cx="180" cy="120" r="25" fill="#00ffff"/>
+            <circle cx="120" cy="125" r="12" fill="black"/>
+            <circle cx="180" cy="125" r="12" fill="black"/>
+            <circle cx="122" cy="123" r="5" fill="#ff00ff"/>
+            <circle cx="182" cy="123" r="5" fill="#ff00ff"/>
+            <path d="M 100 180 Q 150 210 200 180" stroke="#ff66ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <text x="150" y="260" font-family="Orbitron" font-size="24" fill="#ff00ff" text-anchor="middle">REMI</text>
+        </svg>
+
+        <h1 class="title">REMI'S TAPES</h1>
+        <div class="subtitle">RÉSERVOIR À SOUVENIR</div>
+        <button class="enter-btn" id="enterBtn" aria-label="Enter gallery">ENTRER</button>
+    </section>
+
+    <div class="password-screen" id="passwordScreen" role="dialog" aria-labelledby="passwordTitle" aria-hidden="true">
+        <h2 id="passwordTitle">ENTER ACCESS CODE</h2>
+        <form id="passwordForm" onsubmit="handlePasswordSubmit(event)">
+            <input 
+                type="password" 
+                id="passwordInput" 
+                placeholder="CODE" 
+                autocomplete="off"
+                aria-label="Access code"
+                required
+            >
+            <button type="submit" class="enter-btn">ACCÉDER</button>
+        </form>
+        <p id="passwordError" class="error-message" role="alert"></p>
+        <p style="color:#999; font-size:0.8rem; margin-top:20px;">Demo password: <strong>AMIS</strong></p>
+    </div>
+
+    <section class="gallery" id="gallery" aria-label="Video gallery">
+        <h2 class="gallery-title">ARCHIVES</h2>
+        <div class="videos" id="videosContainer"></div>
+    </section>
+
+    <div class="player-overlay" id="playerOverlay" role="dialog" aria-labelledby="videoTitle" aria-hidden="true">
+        <button class="close-btn" id="closeBtn" aria-label="Close video player">✕</button>
+        <video id="mainVideo" controls style="width:100%; height:100%; object-fit:contain;"></video>
+        <div class="crt-container" id="crtContainer">
+            <div class="crt">
+                <svg viewBox="0 0 800 600" style="width:100%; display:block;" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="crtGlow">
+                            <feGaussianBlur stdDeviation="2" />
+                        </filter>
+                    </defs>
+                    <rect width="800" height="600" fill="#1a1a1a" rx="20"/>
+                    <rect x="10" y="10" width="780" height="580" fill="black" rx="15"/>
+                    <rect x="20" y="20" width="760" height="560" fill="#0a0a0a" rx="10"/>
+                    <circle cx="700" cy="50" r="12" fill="#ff0000" filter="url(#crtGlow)"/>
+                    <rect x="35" y="35" width="430" height="300" fill="black" stroke="#333" stroke-width="2"/>
+                    <text x="400" y="450" font-family="Orbitron" font-size="24" fill="#ff00ff" text-anchor="middle">VCR PLAYER</text>
+                </svg>
+                <video id="crtVideo" style="position:absolute; top:8%; left:4%; width:54%; height:50%; object-fit:cover; border-radius:5px;"></video>
+            </div>
+            <div class="crt-title" id="crtTitle"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
