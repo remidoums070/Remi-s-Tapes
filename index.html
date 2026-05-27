@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remi's Tapes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <audio id="bgMusic" loop preload="none">
+        <source src="music/groove.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="camcorder" id="clock" aria-label="Digital clock">
+        <span class="clock-indicator">PLAY ▶</span>
+        <span class="clock-time"></span>
+        <span class="clock-date"></span>
+    </div>
+
+    <section class="hero" id="heroSection">
+        <img src="images/portrait.png" alt="Remi's portrait" class="portrait" loading="lazy">
+        <h1 class="title">REMI'S TAPES</h1>
+        <div class="subtitle">RÉSERVOIR À SOUVENIR</div>
+        <button class="enter-btn" id="enterBtn" aria-label="Enter gallery">ENTRER</button>
+    </section>
+
+    <div class="password-screen" id="passwordScreen" role="dialog" aria-labelledby="passwordTitle" aria-hidden="true">
+        <h2 id="passwordTitle">ENTER ACCESS CODE</h2>
+        <form id="passwordForm" onsubmit="handlePasswordSubmit(event)">
+            <input 
+                type="password" 
+                id="passwordInput" 
+                placeholder="CODE" 
+                autocomplete="off"
+                aria-label="Access code"
+                required
+            >
+            <button type="submit" class="enter-btn">ACCÉDER</button>
+        </form>
+        <p id="passwordError" class="error-message" role="alert"></p>
+    </div>
+
+    <section class="gallery" id="gallery" aria-label="Video gallery">
+        <h2 class="gallery-title">ARCHIVES</h2>
+        <div class="videos" id="videosContainer"></div>
+    </section>
+
+    <div class="player-overlay" id="playerOverlay" role="dialog" aria-labelledby="videoTitle" aria-hidden="true">
+        <button class="close-btn" id="closeBtn" aria-label="Close video player">✕</button>
+        <video id="mainVideo" controls></video>
+        <div class="crt-container" id="crtContainer">
+            <div class="crt">
+                <img src="images/tv.png" alt="CRT TV frame">
+                <video id="crtVideo" controls aria-label="Video in CRT display"></video>
+            </div>
+            <div class="crt-title" id="crtTitle"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
