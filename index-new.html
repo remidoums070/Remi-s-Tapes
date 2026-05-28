@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remi's Tapes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles-new.css">
+</head>
+<body>
+    <audio id="bgMusic" loop preload="none">
+        <source src="music/groove.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <div class="clock top-left">
+                <div>PLAY ▶</div>
+                <div id="clockTime"></div>
+                <div id="clockDate"></div>
+            </div>
+
+            <div class="hero-center">
+                <div class="hero-portrait">
+                    <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <radialGradient id="headGrad" cx="40%" cy="30%">
+                                <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:0.8" />
+                                <stop offset="70%" style="stop-color:#ff0088;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#440044;stop-opacity:0.3" />
+                            </radialGradient>
+                        </defs>
+                        <!-- Head glow -->
+                        <ellipse cx="200" cy="150" rx="120" ry="150" fill="#ff00ff" opacity="0.1" filter="url(#glow)"/>
+                        <!-- Head -->
+                        <ellipse cx="200" cy="150" rx="100" ry="130" fill="url(#headGrad)" stroke="#ff00ff" stroke-width="3" filter="url(#glow)"/>
+                        <!-- Face features -->
+                        <circle cx="170" cy="120" r="18" fill="#00ffff" opacity="0.9"/>
+                        <circle cx="230" cy="120" r="18" fill="#00ffff" opacity="0.9"/>
+                        <circle cx="170" cy="120" r="10" fill="#000"/>
+                        <circle cx="230" cy="120" r="10" fill="#000"/>
+                        <circle cx="172" cy="118" r="4" fill="#ffff00"/>
+                        <circle cx="232" cy="118" r="4" fill="#ffff00"/>
+                        <!-- Beard -->
+                        <path d="M 180 200 Q 200 220 220 200" stroke="#ff66ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <!-- Chin -->
+                        <ellipse cx="200" cy="230" rx="50" ry="40" fill="#ff0088" opacity="0.6" stroke="#ff00ff" stroke-width="2"/>
+                        <!-- Neck glow -->
+                        <rect x="160" y="250" width="80" height="100" fill="#ff00ff" opacity="0.1"/>
+                    </svg>
+                </div>
+
+                <h1 class="hero-title">REMI'S TAPES</h1>
+                <div class="hero-subtitle">RÉSERVOIR À SOUVENIR</div>
+                <button class="hero-button" id="enterBtn">ENTER ▶</button>
+            </div>
+
+            <div class="sony-label bottom-left">
+                <div>SONY HiB</div>
+                <div>SP 00:00:00</div>
+            </div>
+        </div>
+
+        <!-- Background elements -->
+        <div class="background-trees">
+            <div class="palm-tree tree-left"></div>
+            <div class="palm-tree tree-center"></div>
+            <div class="palm-tree tree-right"></div>
+        </div>
+        <div class="sunset-overlay"></div>
+    </section>
+
+    <!-- Password Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-content">
+            <div class="clock top-right">
+                <div>PLAY ▶</div>
+                <div id="passwordClockTime"></div>
+                <div id="passwordClockDate"></div>
+            </div>
+
+            <h2 class="password-title">ENTRE LE MOT DE PASSE</h2>
+            
+            <div class="password-input-group">
+                <input 
+                    type="password" 
+                    id="passwordInput" 
+                    placeholder="" 
+                    autocomplete="off"
+                    class="password-input"
+                >
+                <span class="password-cursor" id="cursor">▶</span>
+            </div>
+
+            <button class="password-button" id="submitBtn">ACCÉDER →</button>
+            <p id="passwordError" class="error-message"></p>
+            
+            <div class="sony-label sony-label-password">
+                <div>SONY HiB</div>
+                <div>SP 00:00:00</div>
+            </div>
+        </div>
+
+        <div class="password-decoration">
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#ff00ff" stroke-width="2" opacity="0.3"/>
+                <circle cx="100" cy="100" r="60" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.2"/>
+                <!-- Palm tree neon -->
+                <line x1="100" y1="30" x2="100" y2="120" stroke="#ff00ff" stroke-width="3" opacity="0.6"/>
+                <path d="M 100 40 Q 70 50 60 30 Q 70 45 100 50 Q 130 45 140 30 Q 130 50 100 60" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.5"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <div class="gallery-title-bar">
+                <span class="title-line"></span>
+                <h2 class="gallery-title">ARCHIVES</h2>
+                <span class="title-line"></span>
+            </div>
+            
+            <div class="gallery-sidebar">
+                <button class="sidebar-icon active" data-filter="all" title="All">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="sidebar-icon" data-filter="favorites" title="Favorites">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="sidebar-icon" data-filter="journal" title="Journal">
+                    <i class="fas fa-book"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+        <div class="gallery-footer">
+            <div class="rec-indicator">
+                <span class="rec-dot"></span>
+                <span>REC</span>
+            </div>
+            <div class="footer-text">REMI'S TAPES © 2026</div>
+            <div class="sony-label sony-label-footer">
+                <div>SP 00:00:00</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Player Overlay -->
+    <div class="player-overlay" id="playerOverlay">
+        <button class="player-close" id="closeBtn">✕</button>
+        
+        <div class="crt-frame">
+            <div class="crt-bezel">
+                <div class="crt-screen">
+                    <video id="mainVideo" controls></video>
+                </div>
+                <div class="crt-control-panel">
+                    <div class="control-button"></div>
+                    <div class="control-button"></div>
+                    <div class="control-text">SONY</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-info">
+            <h3 id="videoTitle"></h3>
+            <p id="videoDate"></p>
+        </div>
+    </div>
+
+    <script src="script-new.js"></script>
+</body>
+</html>

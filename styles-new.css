@@ -1,0 +1,766 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Courier Prime', monospace;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    position: relative;
+}
+
+/* Scanline effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 255, 0.02),
+        rgba(255, 0, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 10000;
+}
+
+/* Clock styling */
+.clock {
+    position: absolute;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px #ff00ff;
+    line-height: 1.2;
+}
+
+.clock.top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.clock.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, #1a0033 0%, #000 70%);
+}
+
+/* Sunset overlay gradient */
+.sunset-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 0, 200, 0.1) 0%,
+        rgba(255, 100, 0, 0.15) 40%,
+        rgba(255, 0, 150, 0.1) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Palm trees */
+.background-trees {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.palm-tree {
+    position: absolute;
+    width: 80px;
+    height: 150px;
+    bottom: 0;
+    opacity: 0.4;
+}
+
+.palm-tree::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to top, #000, #001111);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.palm-tree::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 60px;
+    background: radial-gradient(ellipse at center, #001a00 0%, transparent 70%);
+    border-radius: 50% 50% 50% 50%;
+    clip-path: polygon(
+        50% 0%,
+        100% 25%, 85% 50%, 100% 75%, 50% 100%,
+        0% 75%, 15% 50%, 0% 25%
+    );
+}
+
+.tree-left {
+    left: 10%;
+    bottom: 0;
+}
+
+.tree-center {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    opacity: 0.5;
+}
+
+.tree-right {
+    right: 10%;
+    bottom: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-portrait {
+    width: 200px;
+    height: 250px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 60px #ff0088);
+    animation: portrait-float 4s ease-in-out infinite;
+}
+
+@keyframes portrait-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    background: linear-gradient(180deg, #ff00ff, #ff88ff, #ff0088);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px #ff00ff, 0 0 60px #ff0088;
+    filter: drop-shadow(0 0 20px #ff00ff);
+    margin: 10px 0;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+    margin-bottom: 30px;
+}
+
+.hero-button {
+    font-family: 'Courier Prime', monospace;
+    padding: 15px 50px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    background: transparent;
+    border: 3px solid #ff00ff;
+    color: #ff00ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.hero-button:hover {
+    background: #ff00ff;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 0 40px #ff00ff;
+    transform: scale(1.1);
+}
+
+.sony-label {
+    position: absolute;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.sony-label.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+/* ==================== PASSWORD SCREEN ==================== */
+.password-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at 50% 50%, #1a0033 0%, #000 70%);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.password-screen.active {
+    display: flex;
+}
+
+.password-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.password-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.password-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input {
+    font-family: 'Courier Prime', monospace;
+    width: 300px;
+    padding: 15px 40px 15px 20px;
+    font-size: 18px;
+    letter-spacing: 3px;
+    background: #000;
+    border: 2px solid #ff00ff;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 20px #ff00ff inset;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.password-input:focus {
+    box-shadow: 0 0 30px #ff00ff inset, 0 0 30px #ff00ff;
+}
+
+.password-input::placeholder {
+    color: rgba(255, 0, 255, 0.3);
+}
+
+.password-cursor {
+    position: absolute;
+    right: 15px;
+    color: #ff00ff;
+    font-size: 20px;
+    text-shadow: 0 0 10px #ff00ff;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.password-button {
+    font-family: 'Courier Prime', monospace;
+    padding: 12px 40px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 2px solid #ff00ff;
+    color: #ff00ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+.password-button:hover {
+    background: #ff00ff;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 0 30px #ff00ff;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    letter-spacing: 2px;
+    min-height: 14px;
+}
+
+.sony-label-password {
+    bottom: 20px;
+    left: 20px;
+    font-size: 10px;
+}
+
+.password-decoration {
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+    opacity: 0.3;
+    animation: decoration-pulse 3s ease-in-out infinite;
+}
+
+@keyframes decoration-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+/* ==================== GALLERY SECTION ==================== */
+.gallery {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #0a0a0a 100%);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 40px 60px;
+}
+
+.gallery.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.gallery-title-bar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+}
+
+.title-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff00ff, transparent);
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.gallery-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #ff00ff;
+    text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff0088;
+    white-space: nowrap;
+}
+
+.gallery-sidebar {
+    display: flex;
+    gap: 15px;
+}
+
+.sidebar-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ff00ff;
+    background: transparent;
+    color: #ff00ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.sidebar-icon:hover,
+.sidebar-icon.active {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+    flex: 1;
+}
+
+.video-card {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+}
+
+.video-cassette {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a0a4a 100%);
+    border: 3px solid #ff00ff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.video-cassette::before {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 50%;
+    background: linear-gradient(135deg, #333, #000);
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 45%;
+    object-fit: cover;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff;
+    z-index: 3;
+}
+
+.video-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+    margin-bottom: 3px;
+}
+
+.video-date {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: #aaa;
+}
+
+/* Bottom left Sony label on cassette */
+.cassette-sony {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff;
+    line-height: 1.2;
+    z-index: 3;
+}
+
+.gallery-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid #ff00ff;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.rec-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rec-dot {
+    width: 12px;
+    height: 12px;
+    background: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff0000;
+    animation: rec-pulse 1s infinite;
+}
+
+@keyframes rec-pulse {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.footer-text {
+    flex: 1;
+    text-align: center;
+}
+
+.sony-label-footer {
+    font-size: 10px;
+}
+
+/* ==================== PLAYER OVERLAY ==================== */
+.player-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player-overlay.active {
+    display: flex;
+}
+
+.player-close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: #ff00ff;
+    cursor: pointer;
+    z-index: 5001;
+    text-shadow: 0 0 10px #ff00ff;
+    transition: all 0.3s ease;
+}
+
+.player-close:hover {
+    transform: scale(1.3);
+    text-shadow: 0 0 20px #ff00ff;
+}
+
+.crt-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crt-bezel {
+    position: relative;
+    width: 800px;
+    max-width: 90vw;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%);
+    border: 40px solid;
+    border-image: linear-gradient(135deg, #444, #000, #222, #000) 1;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 40px #ff00ff,
+        inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.crt-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.crt-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.crt-control-panel {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-button {
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    border: 2px solid #666;
+}
+
+.control-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.video-info {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#videoTitle {
+    font-size: 24px;
+    color: #ff00ff;
+    text-shadow: 0 0 15px #ff00ff;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+#videoDate {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 1px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .hero-title {
+        font-size: 50px;
+    }
+    
+    .gallery-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        padding: 20px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .crt-bezel {
+        width: 100%;
+        border-width: 20px;
+    }
+}
